@@ -43,7 +43,7 @@ void treedict_append(Treedict* tree, char* key, void* value){
         tree->child = calloc(1, sizeof(Treedict) );
         tree->child->parent = tree;
         tree = tree->child;
-    create_last_next:
+    append_character:
         tree->character = *key;
         ++key;
         if (*key) goto create_child;
@@ -56,7 +56,7 @@ void treedict_append(Treedict* tree, char* key, void* value){
         tree->next = calloc(1, sizeof(Treedict) );
         tree->next->parent = tree;
         tree = tree->next;
-        goto create_last_next;
+        goto append_character;
 }
 
 void* treedict_get(Treedict* tree, char* key){
